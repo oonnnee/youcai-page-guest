@@ -15,10 +15,6 @@ module.exports = {
         alias: {
             page: path.resolve(__dirname, 'src/page'),
             resource: path.resolve(__dirname, 'src/resource'),
-            style: path.resolve(__dirname, 'src/style'),
-            js: path.resolve(__dirname, 'src/js'),
-            img: path.resolve(__dirname, 'src/img'),
-            layout: path.resolve(__dirname, 'src/page/layout'),
             util: path.resolve(__dirname, 'src/util'),
             service: path.resolve(__dirname, 'src/service')
         }

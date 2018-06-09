@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Index from 'page/index/index.jsx';
 
+import './app.scss';
+
 class App extends React.Component{
 
     render(){

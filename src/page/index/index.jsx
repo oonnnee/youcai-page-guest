@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './index.scss';
+import './index.js';
 
 class Index extends React.Component{
     render(){
@@ -16,18 +18,23 @@ class Index extends React.Component{
                                 <span className="icon-bar"></span>
                             </button>
                             <a className="navbar-brand" href="#">
-                                <span>欢迎访问优菜网</span>
+                                <img src={require('resource/image/brand.png')} />
                             </a>
                         </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul className="nav navbar-nav">
+                                <li><a href="#">欢迎访问优菜网</a></li>
+                            </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a href="#">登录</a></li>
+                                <li><a href="#">主页</a></li>
+                                <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModal">登录</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 {/*----- carousel -----*/}
+                <div className="container">
                 <div id="carousel-example-generic" className="carousel slide" data-ride="carousel">
                         <ol className="carousel-indicators">
                             <li data-target="#carousel-example-generic" data-slide-to="0" className="active"></li>
@@ -58,7 +65,188 @@ class Index extends React.Component{
                             <span className="sr-only">Next</span>
                         </a>
                     </div>
+                </div>
 
+                {/*----- hot products -----*/}
+                <div className="col-md-12 margin-top-md">
+                    <div className="panel panel-default">
+                        <div className="panel-body bg-primary">
+                            热门产品
+                        </div>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/*----- latest products -----*/}
+                <div className="col-md-12 margin-top-md">
+                    <div className="panel panel-default">
+                        <div className="panel-body bg-primary">
+                            最新产品
+                        </div>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="thumbnail">
+                            <img src={require('resource/image/青菜.jpg')} />
+                            <div className="caption">
+                                <h3 className="text-center">青菜</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/*----- footer -----*/}
+                <div className="text-center">优菜网 All rights reserved</div>
+
+                {/*----- login modal -----*/}
+                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                                <h4 className="modal-title" id="exampleModalLabel">用户登录</h4>
+                            </div>
+                            <div className="modal-body">
+                                <form>
+                                    <div className="form-group">
+                                        <input type="text" className="form-control" id="id" placeholder="用户名" />
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="password" className="form-control" id="pwd" placeholder="密码"/>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" className="btn btn-primary">登录</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
