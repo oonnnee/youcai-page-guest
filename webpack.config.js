@@ -95,7 +95,7 @@ module.exports = {
             index: '/dist/index.html'
         },
         proxy : {
-            '/manage': {
+            '/guest': {
                 target: 'http://localhost:8060',
                 changeOrigin: true
             }

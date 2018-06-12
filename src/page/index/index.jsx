@@ -3,7 +3,47 @@ import React from 'react';
 import './index.scss';
 import './index.js';
 
+import LoginService from 'service/login-service.jsx';
+import AppUtil from 'util/app-util.jsx';
+
+const loginService = new LoginService();
+const appUtil = new AppUtil();
+
 class Index extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            id: '',
+            pwd: ''
+        }
+    }
+
+
+    login(){
+        const loginInfo = {
+            id: this.state.id,
+            pwd: this.state.pwd
+        };
+        const result = loginService.checkLoginInfo(loginInfo);
+        if (!result.status){
+            appUtil.errorTip(result.msg);
+            return;
+        }
+        loginService.login(this.state).then(data => {
+            appUtil.setStorage('user', data);
+            window.location.href = '/home';
+        }, err => {
+            appUtil.errorTip(err);
+        })
+    }
+
+    onTextChange(e){
+        this.setState({
+            [e.target.id]: e.target.value
+        });
+    }
+
     render(){
         return (
             <div>
@@ -23,10 +63,10 @@ class Index extends React.Component{
                         </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
-                                <li><a href="#">欢迎访问优菜网</a></li>
+                                <li><a href="/">欢迎访问优菜网</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a href="#">主页</a></li>
+                                <li><a href="/">主页</a></li>
                                 <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModal">登录</a></li>
                             </ul>
                         </div>
@@ -233,16 +273,18 @@ class Index extends React.Component{
                             <div className="modal-body">
                                 <form>
                                     <div className="form-group">
-                                        <input type="text" className="form-control" id="id" placeholder="用户名" />
+                                        <input type="text" className="form-control" id="id" placeholder="用户名"
+                                               onChange={e => this.onTextChange(e)}/>
                                     </div>
                                     <div className="form-group">
-                                        <input type="password" className="form-control" id="pwd" placeholder="密码"/>
+                                        <input type="password" className="form-control" id="pwd" placeholder="密码"
+                                               onChange={e => this.onTextChange(e)}/>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" className="btn btn-primary">登录</button>
+                                <button type="button" className="btn btn-primary" onClick={() => this.login()}>登录</button>
                             </div>
                         </div>
                     </div>
