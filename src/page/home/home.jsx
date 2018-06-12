@@ -8,6 +8,8 @@ import Index from 'page/home/index.jsx';
 /*----- 产品 -----*/
 import ProductList from 'page/product/list.jsx';
 import ProductDetail from 'page/product/detail.jsx';
+/*----- 报价 -----*/
+import PricelistDetail from 'page/pricelist/detail.jsx';
 
 class Home extends React.Component{
 
@@ -22,6 +24,8 @@ class Home extends React.Component{
                         {/*----- 产品 -----*/}
                         <Route exact path="/home/product" component={ProductList}/>
                         <Route exact path="/home/product/detail/:id" component={ProductDetail}/>
+                        {/*----- 报价 -----*/}
+                        <Route exact path="/home/pricelist" component={PricelistDetail}/>
                     </Switch>
                 </div>
             </Router>

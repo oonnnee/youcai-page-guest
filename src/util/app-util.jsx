@@ -90,7 +90,7 @@ class AppUtil{
             删除本地存储
     -------------------------------*/
     removeStorage(name){
-        window.localStorage.removeItem(name);
+        window.sessionStorage.removeItem(name);
     }
 
 

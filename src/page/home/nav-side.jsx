@@ -16,20 +16,7 @@ class NavSide extends React.Component{
                             <NavLink exact activeClassName="active-menu" to="/home/product"><i className="fa fa-product-hunt"></i> 产品列表</NavLink>
                         </li>
                         <li>
-                            <a href="javascript:;"><i className="fa fa-reorder"></i>报价<span className="fa arrow"></span></a>
-                            <ul className="nav nav-second-level collapse">
-                                <li>
-                                    <Link to="/pricelist/manage">报价管理</Link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;"><i className="fa fa-blind"></i>司机<span className="fa arrow"></span></a>
-                            <ul className="nav nav-second-level collapse">
-                                <li>
-                                    <Link to="/driver/manage">司机管理</Link>
-                                </li>
-                            </ul>
+                            <NavLink exact activeClassName="active-menu" to="/home/pricelist"><i className="fa fa-reorder"></i> 查看报价</NavLink>
                         </li>
                     </ul>
 
