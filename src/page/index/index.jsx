@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import './index.scss';
 import './index.js';
@@ -45,6 +46,13 @@ class Index extends React.Component{
     }
 
     render(){
+        const user = appUtil.getStorage("user");
+        let NavbarRight;
+        if (user){
+            NavbarRight = <li><Link to="/home">欢迎，{user.name}</Link></li>;
+        }else{
+            NavbarRight = <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModal">登录</a></li>;
+        }
         return (
             <div>
                 {/*----- header -----*/}
@@ -66,8 +74,7 @@ class Index extends React.Component{
                                 <li><a href="/">欢迎访问优菜网</a></li>
                             </ul>
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a href="/">主页</a></li>
-                                <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModal">登录</a></li>
+                                {NavbarRight}
                             </ul>
                         </div>
                     </div>

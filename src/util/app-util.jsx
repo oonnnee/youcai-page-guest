@@ -17,7 +17,7 @@ class AppUtil{
                         typeof resolve === 'function' && resolve(resp.data, resp.msg);
                     }
                     // 没有登录状态，强制登录
-                    else if(15 === resp.code){
+                    else if(1 === resp.code){
                         this.doLogin();
                     }
                     else{
@@ -59,11 +59,13 @@ class AppUtil{
         let dataType = typeof data;
         // json对象
         if(dataType === 'object'){
-            window.localStorage.setItem(name, JSON.stringify(data));
+            // window.localStorage.setItem(name, JSON.stringify(data));
+            window.sessionStorage.setItem(name, JSON.stringify(data));
         }
         // 基础类型
         else if(['number','string','boolean'].indexOf(dataType) >= 0){
-            window.localStorage.setItem(name, data);
+            // window.localStorage.setItem(name, data);
+            window.sessionStorage.setItem(name, data);
         }
         // 其他不支持的类型
         else{
@@ -75,7 +77,7 @@ class AppUtil{
             取出本地存储
     -------------------------------*/
     getStorage(name){
-        let data = window.localStorage.getItem(name);
+        let data = window.sessionStorage.getItem(name);
         if(data){
             return JSON.parse(data);
         }

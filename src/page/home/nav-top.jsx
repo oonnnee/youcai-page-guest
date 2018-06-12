@@ -10,6 +10,7 @@ const appUtil = new AppUtil();
 class NavTop extends React.Component{
 
     render(){
+        const user = appUtil.getStorage('user');
         return (
             <nav className="navbar-default top-navbar" role="navigation">
                 <div className="navbar-header">
@@ -19,13 +20,13 @@ class NavTop extends React.Component{
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand" href="/"> <strong>优菜网管理系统</strong></a>
+                    <a className="navbar-brand" href="/"> <strong>优菜网客户端</strong></a>
                 </div>
 
                 <ul className="nav navbar-top-links navbar-right">
                     <li className="dropdown">
                         <a className="dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-expanded="false">
-                            <i className="fa fa-user fa-fw"></i>欢迎, admin <i className="fa fa-caret-down"></i>
+                            <i className="fa fa-user fa-fw"></i>欢迎, {user.name} <i className="fa fa-caret-down"></i>
                         </a>
                         <ul className="dropdown-menu dropdown-user">
                             <li><Link to="/user/profile"><i className="fa fa-user fa-fw"></i> 用户信息</Link>
