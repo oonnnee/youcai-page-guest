@@ -58,7 +58,7 @@ class Save extends React.Component{
             })
         })
         total = total.toFixed(2);
-        if (!confirm(`订单总价为${total}元，确认创建吗？`)){
+        if (!confirm(`采购单总价为${total}元，确认创建吗？`)){
             return;
         }
 
@@ -84,7 +84,7 @@ class Save extends React.Component{
         target.disabled = true;
         orderService.new(products).then(() => {
             target.innerHTML = '创建';
-            appUtil.successTip('创建订单成功');
+            appUtil.successTip('创建采购单成功');
         }, errMsg => {
             appUtil.errorTip(errMsg);
         });
@@ -93,8 +93,8 @@ class Save extends React.Component{
         return (
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <PageTitle title="创建订单" />
-                    <BreadCrumb path={[{href: '/home/pricelist', name: '查看报价'}]} current="创建订单"/>
+                    <PageTitle title="创建采购单" />
+                    <BreadCrumb path={[{href: '/home/pricelist', name: '查看报价'}]} current="创建采购单"/>
                     <div className="panel-group margin-top-md" id="accordion" role="tablist" aria-multiselectable="true">
                         {
                             this.state.categories.map((category, categoryindex) => {
@@ -147,7 +147,7 @@ class Save extends React.Component{
                                                                                 </div>
                                                                             </div>
                                                                             <div className="form-group">
-                                                                                <label htmlFor="note" className="col-sm-4 control-label">数量/{product.unit}</label>
+                                                                                <label htmlFor="note" className="col-sm-4 control-label">下单量/{product.unit}</label>
                                                                                 <div className="col-sm-8">
                                                                                     <input type="text" className="form-control" id="count"
                                                                                            categoryindex={categoryindex} productindex={productindex}

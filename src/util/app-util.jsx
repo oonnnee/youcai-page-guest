@@ -18,6 +18,7 @@ class AppUtil{
                     }
                     // 没有登录状态，强制登录
                     else if(1 === resp.code){
+                        this.removeStorage('user');
                         this.doLogin();
                     }
                     else{

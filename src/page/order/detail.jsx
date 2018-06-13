@@ -52,23 +52,22 @@ class Detail extends React.Component{
             })
     }
 
-    onPdateChange(e){
-        // this.setState({
-        //     pdate: e.target.value
-        // }, () => {
-        //     this.loadCategoryWithProducts()
-        // })
-        window.location.href = `/pricelist/detail/${this.state.guestId}/${e.target.value}`;
+    onDateChange(e){
+        this.setState({
+            date: e.target.value
+        }, () => {
+            this.loadCategories()
+        })
     }
 
     render(){
         let date;
         if (this.state.dates.length === 0){
-            date = <input type="text" className="form-control" value="暂无订单" readOnly />
+            date = <input type="text" className="form-control" value="暂无采购单" readOnly />
         }else{
             date = (
-                <select id="pdate" value={this.state.date} className="form-control"
-                        onChange={e => this.onPdateChange(e)}>
+                <select id="date" value={this.state.date} className="form-control"
+                        onChange={e => this.onDateChange(e)}>
                     {
                         this.state.dates.map((value, index) => {
                             return <option key={index} value={value}>{value}</option>
@@ -80,7 +79,7 @@ class Detail extends React.Component{
         return (
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <PageTitle title="我的订单" >
+                    <PageTitle title="我的采购单" >
                         <div className="page-header-right">
                             <a href={"localhost:8080/manage/excel/pricelist/export?guestId="+
                                 this.state.guestId+"&"+"pdate="+this.state.pdate}
@@ -91,12 +90,12 @@ class Detail extends React.Component{
                             </a>
                         </div>
                     </PageTitle>
-                    <BreadCrumb path={[]} current="我的订单"/>
+                    <BreadCrumb path={[]} current="我的采购单"/>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-inline">
                                 <div className="form-group">
-                                    <label htmlFor="pdate">订单日期&nbsp;</label>
+                                    <label htmlFor="pdate">采购单日期&nbsp;</label>
                                     {date}
                                 </div>
                             </div>
