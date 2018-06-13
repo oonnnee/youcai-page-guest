@@ -5,10 +5,10 @@ import PageTitle from 'page/part/page-title.jsx';
 import BreadCrumb from 'page/part/bread-crumb.jsx';
 
 import AppUtil from 'util/app-util.jsx';
-import PricelistService from 'service/pricelist-service.jsx';
+import OrderService from 'service/order-service.jsx';
 
 
-const pricelistService = new PricelistService();
+const orderService = new OrderService();
 const appUtil = new AppUtil();
 
 class Detail extends React.Component{
@@ -16,18 +16,35 @@ class Detail extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            'guestId': '',
-            'date': {},
-            'categories': []
+            guestId: '',
+            date: {},
+            dates: [],
+            categories: [],
         }
     }
 
     componentDidMount(){
-        this.load();
+        this.loadDates();
     }
 
-    load(){
-        pricelistService.findLatest()
+    loadDates(){
+        orderService.findDates().then(dates => {
+            if (dates==null || dates.length==0){
+                return;
+            }
+            this.setState({
+                dates: dates,
+                date: dates[0]
+            }, () => {
+                this.loadCategories();
+            })
+        }, errMsg => {
+            appUtil.errorTip(errMsg);
+        })
+    }
+
+    loadCategories(){
+        orderService.findByDate(this.state.date)
             .then(data => {
                 this.setState(data);
             }, errMsg => {
@@ -35,34 +52,52 @@ class Detail extends React.Component{
             })
     }
 
+    onPdateChange(e){
+        // this.setState({
+        //     pdate: e.target.value
+        // }, () => {
+        //     this.loadCategoryWithProducts()
+        // })
+        window.location.href = `/pricelist/detail/${this.state.guestId}/${e.target.value}`;
+    }
+
     render(){
+        let date;
+        if (this.state.dates.length === 0){
+            date = <input type="text" className="form-control" value="暂无订单" readOnly />
+        }else{
+            date = (
+                <select id="pdate" value={this.state.date} className="form-control"
+                        onChange={e => this.onPdateChange(e)}>
+                    {
+                        this.state.dates.map((value, index) => {
+                            return <option key={index} value={value}>{value}</option>
+                        })
+                    }
+                </select>
+            );
+        }
         return (
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <PageTitle title="查看报价" >
+                    <PageTitle title="我的订单" >
                         <div className="page-header-right">
-                            <Link to="/home/order/new" className="btn btn-primary"
-                               disabled={this.state.guestId===''?true:false}>
-                                <i className="fa fa-plus"></i>&nbsp;
-                                <span>创建订单</span>
-                            </Link>
-                            <a href={"localhost:8060/guest/excel/pricelist/export?" +
-                                "guestId="+this.state.guestId+"&"+"pdate="+this.state.date}
+                            <a href={"localhost:8080/manage/excel/pricelist/export?guestId="+
+                                this.state.guestId+"&"+"pdate="+this.state.pdate}
                                target="_blank" className="btn btn-primary"
-                               disabled={this.state.guestId===''?true:false}>
+                                disabled={this.state.dates.length===0?true:false}>
                                 <i className="fa fa-cloud-download"></i>&nbsp;
                                 <span>导出excel</span>
                             </a>
                         </div>
                     </PageTitle>
-                    <BreadCrumb path={[]} current="查看报价"/>
+                    <BreadCrumb path={[]} current="我的订单"/>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-inline">
                                 <div className="form-group">
-                                    <label htmlFor="date">最新报价日期&nbsp;</label>
-                                    <input type="text" className="form-control" id="date"
-                                           value={this.state.guestId===''?'暂无报价':this.state.date} readOnly />
+                                    <label htmlFor="pdate">订单日期&nbsp;</label>
+                                    {date}
                                 </div>
                             </div>
                         </div>
@@ -105,18 +140,30 @@ class Detail extends React.Component{
                                                                                 </div>
                                                                             </div>
                                                                             <div className="form-group">
-                                                                                <label htmlFor="price" className="col-sm-4 control-label">报价/元</label>
+                                                                                <label htmlFor="price" className="col-sm-4 control-label">单价/元</label>
                                                                                 <div className="col-sm-8">
                                                                                     <input type="text" className="form-control" id="price"
-                                                                                           categoryindex={categoryindex} productindex={productindex}
                                                                                            value={product.price} readOnly />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="form-group">
+                                                                                <label htmlFor="note" className="col-sm-4 control-label">数量/{product.unit}</label>
+                                                                                <div className="col-sm-8">
+                                                                                    <input type="text" className="form-control" id="count"
+                                                                                           value={product.num} readOnly/>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="form-group">
+                                                                                <label htmlFor="price" className="col-sm-4 control-label">总价/元</label>
+                                                                                <div className="col-sm-8">
+                                                                                    <input type="text" className="form-control" id="amount"
+                                                                                           value={product.amount} readOnly />
                                                                                 </div>
                                                                             </div>
                                                                             <div className="form-group">
                                                                                 <label htmlFor="note" className="col-sm-4 control-label">备注</label>
                                                                                 <div className="col-sm-8">
                                                                                     <input type="text" className="form-control" id="note"
-                                                                                           categoryindex={categoryindex} productindex={productindex}
                                                                                            value={product.note} readOnly />
                                                                                 </div>
                                                                             </div>
