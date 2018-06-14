@@ -140,14 +140,14 @@ class Save extends React.Component{
                                                                                 </div>
                                                                             </div>
                                                                             <div className="form-group">
-                                                                                <label htmlFor="price" className="col-sm-4 control-label">总价/元</label>
+                                                                                <label htmlFor="price" className="col-sm-4 control-label">金额/元</label>
                                                                                 <div className="col-sm-8">
                                                                                     <input type="text" className="form-control" id="price"
                                                                                            value={(product.price*product.count).toFixed(2)} readOnly />
                                                                                 </div>
                                                                             </div>
                                                                             <div className="form-group">
-                                                                                <label htmlFor="note" className="col-sm-4 control-label">下单量/{product.unit}</label>
+                                                                                <label htmlFor="note" className="col-sm-4 control-label">数量/{product.unit}</label>
                                                                                 <div className="col-sm-8">
                                                                                     <input type="text" className="form-control" id="count"
                                                                                            categoryindex={categoryindex} productindex={productindex}
