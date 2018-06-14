@@ -46,6 +46,7 @@ class Detail extends React.Component{
     loadCategories(){
         orderService.findByDate(this.state.date)
             .then(data => {
+                data.date = appUtil.getDateString(new Date(data.date));
                 this.setState(data);
             }, errMsg => {
                 appUtil.errorTip(errMsg);
