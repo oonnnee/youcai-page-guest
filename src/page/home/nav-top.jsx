@@ -29,7 +29,7 @@ class NavTop extends React.Component{
                             <i className="fa fa-user fa-fw"></i>欢迎, {user.name} <i className="fa fa-caret-down"></i>
                         </a>
                         <ul className="dropdown-menu dropdown-user">
-                            <li><Link to="/user/profile"><i className="fa fa-user fa-fw"></i> 用户信息</Link>
+                            <li><Link to="/home/user"><i className="fa fa-user fa-fw"></i> 用户信息</Link>
                             </li>
                             <li className="divider"></li>
                             <li><a href="javascript:;" onClick={() => this.handleLogout()}><i className="fa fa-sign-out fa-fw"></i> 退出登录</a>

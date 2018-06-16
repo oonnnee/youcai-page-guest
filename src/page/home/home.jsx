@@ -5,6 +5,10 @@ import NavTop from 'page/home/nav-top.jsx';
 import NavSide from 'page/home/nav-side.jsx';
 import Index from 'page/home/index.jsx';
 
+/*----- 用户 -----*/
+import UserProfile from 'page/user/user-profile.jsx';
+import UserEdit from 'page/user/user-edit.jsx';
+
 /*----- 产品 -----*/
 import ProductList from 'page/product/list.jsx';
 import ProductDetail from 'page/product/detail.jsx';
@@ -24,6 +28,9 @@ class Home extends React.Component{
                     <NavSide/>
                     <Switch>
                         <Route exact path="/home" component={Index}/>
+                        {/*----- 用户 -----*/}
+                        <Route exact path="/home/user" component={UserProfile}/>
+                        <Route exact path="/home/user/edit" component={UserEdit}/>
                         {/*----- 产品 -----*/}
                         <Route exact path="/home/product" component={ProductList}/>
                         <Route exact path="/home/product/detail/:id" component={ProductDetail}/>
@@ -32,6 +39,7 @@ class Home extends React.Component{
                         {/*----- 订单 -----*/}
                         <Route exact path="/home/order/new" component={OrderSave}/>
                         <Route exact path="/home/order" component={OrderDetail}/>
+
                     </Switch>
                 </div>
             </Router>
