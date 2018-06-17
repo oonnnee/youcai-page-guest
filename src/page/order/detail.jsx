@@ -61,6 +61,16 @@ class Detail extends React.Component{
         })
     }
 
+    onDelete(){
+        if (!confirm('确认删除此采购单吗？')) return;
+        orderService.delete(this.state.date).then(() => {
+            appUtil.successTip('删除成功');
+            window.location.reload(true);
+        }, err => {
+            appUtil.errorTip(err);
+        })
+    }
+
     render(){
         let date;
         if (this.state.dates.length === 0){
@@ -88,6 +98,11 @@ class Detail extends React.Component{
                                 disabled={this.state.dates.length===0?true:false}>
                                 <i className="fa fa-cloud-download"></i>&nbsp;
                                 <span>导出excel</span>
+                            </a>
+                            <a className="btn btn-danger" disabled={this.state.dates.length===0?true:false}
+                                onClick={() => this.onDelete()}>
+                                <i className="fa fa-trash"></i>&nbsp;
+                                <span>删除</span>
                             </a>
                         </div>
                     </PageTitle>
@@ -147,7 +162,7 @@ class Detail extends React.Component{
                                                                                 </div>
                                                                             </div>
                                                                             <div className="form-group">
-                                                                                <label htmlFor="note" className="col-sm-4 control-label">数量/{product.unit}</label>
+                                                                                <label htmlFor="note" className="col-sm-4 control-label">数量<br/>({product.unit})</label>
                                                                                 <div className="col-sm-8">
                                                                                     <input type="text" className="form-control" id="count"
                                                                                            value={product.num} readOnly/>

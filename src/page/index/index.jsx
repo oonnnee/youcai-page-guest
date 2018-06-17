@@ -15,7 +15,7 @@ class Index extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            id: '',
+            id: '1442933609',
             pwd: ''
         }
     }
@@ -281,6 +281,7 @@ class Index extends React.Component{
                                 <form>
                                     <div className="form-group">
                                         <input type="text" className="form-control" id="id" placeholder="用户名"
+                                               value={this.state.id}
                                                onChange={e => this.onTextChange(e)}/>
                                     </div>
                                     <div className="form-group">

@@ -85,6 +85,7 @@ class Save extends React.Component{
         orderService.new(products).then(() => {
             target.innerHTML = '创建';
             appUtil.successTip('创建采购单成功');
+            window.location.href = '/home/order';
         }, errMsg => {
             appUtil.errorTip(errMsg);
         });
@@ -147,7 +148,7 @@ class Save extends React.Component{
                                                                                 </div>
                                                                             </div>
                                                                             <div className="form-group">
-                                                                                <label htmlFor="note" className="col-sm-4 control-label">数量/{product.unit}</label>
+                                                                                <label htmlFor="note" className="col-sm-4 control-label">数量<br/>({product.unit})</label>
                                                                                 <div className="col-sm-8">
                                                                                     <input type="text" className="form-control" id="count"
                                                                                            categoryindex={categoryindex} productindex={productindex}

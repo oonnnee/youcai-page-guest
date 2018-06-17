@@ -26,6 +26,14 @@ class OrderService{
             data: {date: date}
         });
     }
+
+    delete(date){
+        return appUtil.request({
+            type: 'post',
+            url: '/guest/order/delete',
+            data: {date: date}
+        });
+    }
 }
 
 export default OrderService;
