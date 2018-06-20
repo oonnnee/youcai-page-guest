@@ -92,8 +92,7 @@ class Detail extends React.Component{
                 <div id="page-inner">
                     <PageTitle title="我的采购单" >
                         <div className="page-header-right">
-                            <a href={"localhost:8080/manage/excel/pricelist/export?guestId="+
-                                this.state.guestId+"&"+"pdate="+this.state.pdate}
+                            <a href={"localhost:8060/guest/order/export?date="+this.state.date}
                                target="_blank" className="btn btn-primary"
                                 disabled={this.state.dates.length===0?true:false}>
                                 <i className="fa fa-cloud-download"></i>&nbsp;

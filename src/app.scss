@@ -93,7 +93,7 @@ body {
     overflow-y: auto;
     padding-top: 20px;
     border:none;
-    background: #32C2CD url(./resource/image/bg-img.jpg) !important;
+    background: #31c5a7 !important;
   }
   /*----- 收缩按钮 -----*/
   #sideNav{
@@ -149,7 +149,7 @@ body {
   .navbar-side {
     width: 100%;
     border:none;
-    background: #32C2CD url(./resource/image/bg-img.jpg) !important;
+    background: #31c5a7 !important;
   }
   /*----- 收缩按钮 -----*/
   #sideNav{
@@ -367,17 +367,6 @@ p {
 }
 
 
-.jumbotron{
-  padding:20px;
-}
-.jumbotron p {
-  margin-bottom: 15px;
-  font-size: 15px;
-  font-weight: 200;
-}
-.jumbotron, .well{
-  background:#fff;
-}
 .noti-box {
   min-height: 100px;
   padding: 20px;
@@ -620,7 +609,7 @@ footer p{
   padding-top: 4px;
 }
 .active-menu {
-  background-color: #18A0A9 !important;
+  background-color: #98e2d3 !important;
   color: #fff !important;
 }
 .active-menu i{
@@ -720,6 +709,10 @@ ul.nav.nav-second-level.collapse.in {
 
 ul.dropdown-menu.dropdown-messages li a div {
   padding: 2px 0;
+}
+
+.jumbotron{
+  background: none;
 }
 /*----------------------------------------------
     UI ELEMENTS STYLES

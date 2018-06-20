@@ -46,8 +46,7 @@ class Detail extends React.Component{
                                 <i className="fa fa-plus"></i>&nbsp;
                                 <span>创建订单</span>
                             </Link>
-                            <a href={"localhost:8060/guest/excel/pricelist/export?" +
-                                "guestId="+this.state.guestId+"&"+"pdate="+this.state.date}
+                            <a href={"localhost:8060/guest/pricelist/export?date="+this.state.date}
                                target="_blank" className="btn btn-primary"
                                disabled={this.state.guestId===''?true:false}>
                                 <i className="fa fa-cloud-download"></i>&nbsp;
