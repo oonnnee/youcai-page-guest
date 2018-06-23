@@ -5,7 +5,8 @@
   "repository": "git@github.com:oonnnee/youcai-page-guest.git",
   "license": "MIT",
   "scripts": {
-    "build": "node_modules/.bin/webpack",
+    "build_win": "set WEBPACK_ENV=online&& node_modules/.bin/webpack -p",
+    "build": "WEBPACK_ENV=online node_modules/.bin/webpack -p",
     "server": "node_modules/.bin/webpack-dev-server"
   },
   "devDependencies": {
