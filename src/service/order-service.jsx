@@ -22,7 +22,7 @@ class OrderService{
     findByDate(date){
         return appUtil.request({
             type: 'get',
-            url: '/guest/order/findByDate',
+            url: '/guest/order/findOneByDate',
             data: {date: date}
         });
     }

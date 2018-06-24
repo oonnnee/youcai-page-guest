@@ -11,9 +11,9 @@ class ProductService{
         data.page = param.page;
         data.size = param.size;
         if(param.type === 'list'){
-            url = '/guest/product/list';
+            url = '/guest/product/findPage';
         }else if(param.type === 'search'){
-            url = '/guest/product/findBy';
+            url = '/guest/product/findPageByNameLikeAndCodeIn';
             if (typeof param.PCodes !== 'undefined'){
                 data.PCodes = param.PCodes;
             }
@@ -32,7 +32,7 @@ class ProductService{
     findById(id){
         return appUtil.request({
             type    : 'get',
-            url     : '/guest/product/find',
+            url     : '/guest/product/findOne',
             data    : {
                 id : id
             }
