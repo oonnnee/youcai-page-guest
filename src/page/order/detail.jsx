@@ -18,7 +18,9 @@ class Detail extends React.Component{
         this.state = {
             guestId: '',
             date: {},
+            state: '',
             dates: [],
+            states: [],
             categories: [],
         }
     }
@@ -28,6 +30,22 @@ class Detail extends React.Component{
     }
 
     loadDates(){
+        orderService.findDates().then(dates => {
+            if (dates==null || dates.length==0){
+                return;
+            }
+            this.setState({
+                dates: dates,
+                date: dates[0]
+            }, () => {
+                this.loadCategories();
+            })
+        }, errMsg => {
+            appUtil.errorTip(errMsg);
+        })
+    }
+
+    loadStates(){
         orderService.findDates().then(dates => {
             if (dates==null || dates.length==0){
                 return;
@@ -71,6 +89,10 @@ class Detail extends React.Component{
         })
     }
 
+    onFallBack(){
+
+    }
+
     render(){
         let date;
         if (this.state.dates.length === 0){
@@ -92,16 +114,10 @@ class Detail extends React.Component{
                 <div id="page-inner">
                     <PageTitle title="我的采购单" >
                         <div className="page-header-right">
-                            <a href={"www.yangyawen.top:8060/guest/order/export?date="+this.state.date}
-                               target="_blank" className="btn btn-primary"
-                                disabled={this.state.dates.length===0?true:false}>
-                                <i className="fa fa-cloud-download"></i>&nbsp;
-                                <span>导出excel</span>
-                            </a>
                             <a className="btn btn-danger" disabled={this.state.dates.length===0?true:false}
-                                onClick={() => this.onDelete()}>
-                                <i className="fa fa-trash"></i>&nbsp;
-                                <span>删除</span>
+                                onClick={() => this.onFallBack()}>
+                                <i className="fa fa-chevron-left"></i>&nbsp;
+                                <span>退回</span>
                             </a>
                         </div>
                     </PageTitle>
@@ -111,6 +127,10 @@ class Detail extends React.Component{
                             <div className="form-inline">
                                 <div className="form-group">
                                     <label htmlFor="pdate">采购单日期&nbsp;</label>
+                                    {date}
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="pdate">状态&nbsp;</label>
                                     {date}
                                 </div>
                             </div>

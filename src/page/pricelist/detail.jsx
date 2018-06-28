@@ -44,14 +44,8 @@ class Detail extends React.Component{
                             <Link to="/home/order/new" className="btn btn-primary"
                                disabled={this.state.guestId===''?true:false}>
                                 <i className="fa fa-plus"></i>&nbsp;
-                                <span>创建订单</span>
+                                <span>创建采购单</span>
                             </Link>
-                            <a href={"www.yangyawen.top:8060/guest/pricelist/export?date="+this.state.date}
-                               target="_blank" className="btn btn-primary"
-                               disabled={this.state.guestId===''?true:false}>
-                                <i className="fa fa-cloud-download"></i>&nbsp;
-                                <span>导出excel</span>
-                            </a>
                         </div>
                     </PageTitle>
                     <BreadCrumb path={[]} current="查看报价"/>
