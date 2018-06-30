@@ -15,7 +15,7 @@ class Index extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            id: '',
+            phone: '',
             pwd: ''
         }
     }
@@ -23,7 +23,7 @@ class Index extends React.Component{
 
     login(){
         const loginInfo = {
-            id: this.state.id,
+            phone: this.state.phone,
             pwd: this.state.pwd
         };
         const result = loginService.checkLoginInfo(loginInfo);
@@ -41,7 +41,7 @@ class Index extends React.Component{
 
     onTextChange(e){
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.phone]: e.target.value
         });
     }
 
@@ -210,13 +210,13 @@ class Index extends React.Component{
                             <div className="modal-header">
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                                <h4 className="modal-title" id="exampleModalLabel">用户登录</h4>
+                                <h4 className="modal-title" id="exampleModalLabel">客户登录</h4>
                             </div>
                             <div className="modal-body">
                                 <form>
                                     <div className="form-group">
-                                        <input type="text" className="form-control" id="id" placeholder="用户名"
-                                               value={this.state.id}
+                                        <input type="text" className="form-control" id="phone" placeholder="手机号"
+                                               value={this.state.phone}
                                                onChange={e => this.onTextChange(e)}/>
                                     </div>
                                     <div className="form-group">
