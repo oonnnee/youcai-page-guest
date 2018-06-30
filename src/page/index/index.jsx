@@ -41,7 +41,7 @@ class Index extends React.Component{
 
     onTextChange(e){
         this.setState({
-            [e.target.phone]: e.target.value
+            [e.target.id]: e.target.value
         });
     }
 

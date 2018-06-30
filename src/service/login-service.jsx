@@ -18,10 +18,10 @@ class LoginService {
 
     // 检查登录接口的数据是不是合法
     checkLoginInfo(loginInfo){
-        let id = $.trim(loginInfo.id),
+        let phone = $.trim(loginInfo.phone),
             pwd = $.trim(loginInfo.pwd);
         // 判断用户名为空
-        if(typeof id !== 'string' || id.length ===0){
+        if(typeof phone !== 'string' || phone.length ===0){
             return {
                 status: false,
                 msg: '用户名不能为空！'
