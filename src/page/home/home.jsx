@@ -17,6 +17,8 @@ import PricelistDetail from 'page/pricelist/detail.jsx';
 /*----- 订单 -----*/
 import OrderSave from 'page/order/save.jsx';
 import OrderDetail from 'page/order/detail.jsx';
+/*----- 送货单 -----*/
+import DeliverDetail from 'page/deliver/detail.jsx';
 
 class Home extends React.Component{
 
@@ -39,6 +41,8 @@ class Home extends React.Component{
                         {/*----- 订单 -----*/}
                         <Route exact path="/home/order/new" component={OrderSave}/>
                         <Route exact path="/home/order" component={OrderDetail}/>
+                        {/*----- 送货单 -----*/}
+                        <Route exact path="/home/deliver" component={DeliverDetail}/>
 
                     </Switch>
                 </div>

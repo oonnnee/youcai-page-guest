@@ -5,10 +5,10 @@ import PageTitle from 'page/part/page-title.jsx';
 import BreadCrumb from 'page/part/bread-crumb.jsx';
 
 import AppUtil from 'util/app-util.jsx';
-import OrderService from 'service/order-service.jsx';
+import DeliverService from 'service/deliver-service.jsx';
 
 
-const orderService = new OrderService();
+const deliverService = new DeliverService();
 const appUtil = new AppUtil();
 
 class Detail extends React.Component{
@@ -17,10 +17,10 @@ class Detail extends React.Component{
         super(props);
         this.state = {
             guestId: '',
+            guestName: '',
             date: {},
-            state: '',
             dates: [],
-            states: [],
+            driver: {},
             categories: [],
         }
     }
@@ -30,29 +30,13 @@ class Detail extends React.Component{
     }
 
     loadDates(){
-        orderService.findDates().then(dates => {
+        deliverService.findDates().then(dates => {
             if (dates==null || dates.length==0){
                 return;
             }
             this.setState({
                 dates: dates,
                 date: dates[0]
-            }, () => {
-                this.loadStates();
-            })
-        }, errMsg => {
-            appUtil.errorTip(errMsg);
-        })
-    }
-
-    loadStates(){
-        orderService.findStatesByDate(this.state.date).then(states => {
-            if (states==null || states.length==0){
-                return;
-            }
-            this.setState({
-                states: states,
-                state: states[0]
             }, () => {
                 this.loadCategories();
             })
@@ -61,8 +45,9 @@ class Detail extends React.Component{
         })
     }
 
+
     loadCategories(){
-        orderService.findByDateAndState(this.state.date, this.state.state)
+        deliverService.findByDate(this.state.date)
             .then(data => {
                 data.date = appUtil.getDateString(new Date(data.date));
                 this.setState(data);
@@ -75,36 +60,18 @@ class Detail extends React.Component{
         this.setState({
             date: e.target.value
         }, () => {
-            this.loadStates();
-        })
-    }
-
-    onStateChange(e){
-        this.setState({
-            state: e.target.value
-        }, () => {
             this.loadCategories();
-        })
-    }
-
-    onBack(){
-        if (!confirm('确认退回此采购单吗？')) return;
-        orderService.back(this.state.date).then(() => {
-            appUtil.successTip('退回成功');
-            window.location.reload(true);
-        }, err => {
-            appUtil.errorTip(err);
         })
     }
 
     render(){
         let date;
         if (this.state.dates.length === 0){
-            date = <input type="text" className="form-control" value="暂无采购单" readOnly />
+            date = <input type="text" className="form-control" value="暂无送货单" readOnly />
         }else{
             date = (
                 <select id="date" value={this.state.date} className="form-control"
-                        onChange={e => this.onDateChange(e)} style={{marginRight: '20px'}}>
+                        onChange={e => this.onDateChange(e)}>
                     {
                         this.state.dates.map((value, index) => {
                             return <option key={index} value={value}>{value}</option>
@@ -113,52 +80,29 @@ class Detail extends React.Component{
                 </select>
             );
         }
-        let stat;
-        if (this.state.states.length === 0){
-            stat = <input type="text" className="form-control" value="暂无" readOnly />
-        } else{
-            stat = (
-                <select id="state" value={this.state.state} className="form-control"
-                        onChange={e => this.onStateChange(e)}>
-                    {
-                        this.state.states.map((value, index) => {
-                            let show;
-                            if (value === '0'){
-                                show = '正常';
-                            } else{
-                                show = `已退回  ( ${value} )`
-                            }
-                            return <option key={index} value={value}>{show}</option>
-                        })
-                    }
-                </select>
-            );
-        }
         return (
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <PageTitle title="我的采购单" >
-                        <div className="page-header-right">
-                            <a className="btn btn-danger" disabled={this.state.state!='0'}
-                                onClick={() => this.onBack()}>
-                                <i className="fa fa-chevron-left"></i>&nbsp;
-                                <span>退回</span>
-                            </a>
-                        </div>
-                    </PageTitle>
-                    <BreadCrumb path={[]} current="我的采购单"/>
+                    <PageTitle title="我的送货单" />
+                    <BreadCrumb path={[]} current="我的送货单"/>
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="form-inline">
-                                <div className="form-group">
-                                    <label htmlFor="pdate">采购单日期&nbsp;</label>
+                            <form className="form-inline">
+                                <div className="form-group margin-right-md">
+                                    <label htmlFor="date">送货日期</label>
                                     {date}
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="pdate">状态&nbsp;</label>
-                                    {stat}
+                                <div className="form-group margin-right-md">
+                                    <label htmlFor="driverName">司机名称</label>
+                                    <input type="text" className="form-control" id="driverName"
+                                           value={this.state.driver.name} readOnly/>
                                 </div>
-                            </div>
+                                <div className="form-group">
+                                    <label htmlFor="driverMobile">司机电话</label>
+                                    <input type="text" className="form-control" id="driverMobile"
+                                            value={this.state.driver.mobile} readOnly/>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div className="panel-group margin-top-md" id="accordion" role="tablist" aria-multiselectable="true">

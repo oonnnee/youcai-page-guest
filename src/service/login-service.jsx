@@ -11,8 +11,17 @@ class LoginService {
     login(loginInfo){
         return appUtil.request({
             type: 'post',
-            url: '/guest/login',
+            url: '/guest/user/login',
             data: loginInfo
+        });
+    }
+
+    // 用户注册
+    register(registerInfo){
+        return appUtil.request({
+            type: 'post',
+            url: '/guest/user/register',
+            data: registerInfo
         });
     }
 
@@ -32,6 +41,21 @@ class LoginService {
             return {
                 status: false,
                 msg: '密码不能为空！'
+            }
+        }
+        return {
+            status : true,
+            msg : '验证通过'
+        }
+    }
+
+    // 检查登录接口的数据是不是合法
+    checkRegisterInfo(registerInfo){
+        // 判断密码是否一致
+        if(registerInfo.repwd != registerInfo.pwd){
+            return {
+                status: false,
+                msg: '两次密码输入不一致！'
             }
         }
         return {

@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './index.scss';
-import './index.js';
 
 import LoginService from 'service/login-service.jsx';
 import AppUtil from 'util/app-util.jsx';
@@ -15,23 +14,32 @@ class Index extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            phone: '',
-            pwd: ''
+            login_phone: '',
+            login_pwd: '',
+            register_pwd: '',
+            register_repwd: '',
+            register_name: '',
+            register_addr: '',
+            register_phone: '',
+            register_leader1: '',
+            register_mobile1: '',
+            register_leader2: '',
+            register_mobile2: '',
         }
     }
 
 
     login(){
         const loginInfo = {
-            phone: this.state.phone,
-            pwd: this.state.pwd
+            phone: this.state.login_phone,
+            pwd: this.state.login_pwd,
         };
         const result = loginService.checkLoginInfo(loginInfo);
         if (!result.status){
             appUtil.errorTip(result.msg);
             return;
         }
-        loginService.login(this.state).then(data => {
+        loginService.login(loginInfo).then(data => {
             appUtil.setStorage('user', data);
             window.location.href = '/home';
         }, err => {
@@ -39,7 +47,44 @@ class Index extends React.Component{
         })
     }
 
-    onTextChange(e){
+    register(){
+        const registerInfo = {
+            pwd: this.state.register_pwd,
+            repwd: this.state.register_repwd,
+            name: this.state.register_name,
+            addr: this.state.register_addr,
+            phone: this.state.register_phone,
+            leader1: this.state.register_leader1,
+            mobile1: this.state.register_mobile1,
+            leader2: this.state.register_leader2,
+            mobile2: this.state.register_mobile2,
+            note: ''
+        };
+        const result = loginService.checkRegisterInfo(registerInfo);
+        if (!result.status){
+            appUtil.errorTip(result.msg);
+            return;
+        }
+        loginService.register(registerInfo).then(data => {
+            appUtil.successTip('注册成功，快去登陆吧');
+            $('#registerModal').modal('hide');
+            this.setState({
+                register_pwd: '',
+                register_repwd: '',
+                register_name: '',
+                register_addr: '',
+                register_phone: '',
+                register_leader1: '',
+                register_mobile1: '',
+                register_leader2: '',
+                register_mobile2: ''
+            });
+        }, err => {
+            appUtil.errorTip(err);
+        })
+    }
+
+    onChange(e){
         this.setState({
             [e.target.id]: e.target.value
         });
@@ -51,7 +96,12 @@ class Index extends React.Component{
         if (user){
             NavbarRight = <li><Link to="/home">欢迎，{user.name}</Link></li>;
         }else{
-            NavbarRight = <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModal">登录</a></li>;
+            NavbarRight = (
+                <ul className="nav navbar-nav navbar-right">
+                    <li><a href="javascript:;" data-toggle="modal" data-target="#exampleModal">登录</a></li>
+                    <li><a href="javascript:;" data-toggle="modal" data-target="#registerModal">注册</a></li>
+                </ul>
+            )
         }
         return (
             <div>
@@ -73,9 +123,7 @@ class Index extends React.Component{
                             <ul className="nav navbar-nav">
                                 <li><a href="/">欢迎访问优菜网</a></li>
                             </ul>
-                            <ul className="nav navbar-nav navbar-right">
-                                {NavbarRight}
-                            </ul>
+                            {NavbarRight}
                         </div>
                     </div>
                 </div>
@@ -215,19 +263,113 @@ class Index extends React.Component{
                             <div className="modal-body">
                                 <form>
                                     <div className="form-group">
-                                        <input type="text" className="form-control" id="phone" placeholder="手机号"
-                                               value={this.state.phone}
-                                               onChange={e => this.onTextChange(e)}/>
+                                        <input type="text" className="form-control" id="login_phone" placeholder="手机号"
+                                               onChange={e => this.onChange(e)}/>
                                     </div>
                                     <div className="form-group">
-                                        <input type="password" className="form-control" id="pwd" placeholder="密码"
-                                               onChange={e => this.onTextChange(e)}/>
+                                        <input type="password" className="form-control" id="login_pwd" placeholder="密码"
+                                               onChange={e => this.onChange(e)}/>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-default" data-dismiss="modal">关闭</button>
                                 <button type="button" className="btn btn-primary" onClick={() => this.login()}>登录</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/*----- register modal -----*/}
+                <div className="modal fade" id="registerModal" tabIndex="-1" role="dialog"
+                     aria-labelledby="registerModalLabel">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                                <h4 className="modal-title" id="registerModalLabel">客户注册</h4>
+                            </div>
+                            <div className="modal-body">
+                                <form>
+                                    <div className="form-horizontal">
+                                        <div className="form-group">
+                                            <label htmlFor="register_phone" className="col-sm-3 control-label">手机号码</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_phone" type="text"
+                                                       value={this.state.register_phone}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_pwd" className="col-sm-3 control-label">登陆密码</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_pwd" type="password"
+                                                       value={this.state.register_pwd}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_repwd" className="col-sm-3 control-label">再次输入登陆密码</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_repwd" type="password"
+                                                       value={this.state.register_repwd}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_name" className="col-sm-3 control-label">名称</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_name" type="text"
+                                                       value={this.state.register_name}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_addr" className="col-sm-3 control-label">地址</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_addr" type="text"
+                                                       value={this.state.register_addr}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_leader1" className="col-sm-3 control-label">负责人1</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_leader1" type="text"
+                                                       value={this.state.register_leader1}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_mobile1" className="col-sm-3 control-label">负责人1手机号</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_mobile1" type="text"
+                                                       value={this.state.register_mobile1}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_leader2" className="col-sm-3 control-label">负责人2</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_leader2" type="text"
+                                                       value={this.state.register_leader2}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="register_mobile2" className="col-sm-3 control-label">负责人2手机号</label>
+                                            <div className="col-sm-9">
+                                                <input className="form-control" id="register_mobile2" type="text"
+                                                       value={this.state.register_mobile2}
+                                                       onChange={e => this.onChange(e)}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" className="btn btn-primary" onClick={() => this.register()}>注册</button>
                             </div>
                         </div>
                     </div>

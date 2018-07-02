@@ -21,6 +21,9 @@ class NavSide extends React.Component{
                         <li>
                             <NavLink exact activeClassName="active-menu" to="/home/order"><i className="fa fa-reorder"></i> 我的采购单</NavLink>
                         </li>
+                        <li>
+                            <NavLink exact activeClassName="active-menu" to="/home/deliver"><i className="fa fa-truck"></i> 我的送货单</NavLink>
+                        </li>
                     </ul>
                 </div>
             </nav>

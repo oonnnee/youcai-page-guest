@@ -19,21 +19,30 @@ class OrderService{
         });
     }
 
-    findByDate(date){
+    findStatesByDate(date){
         return appUtil.request({
             type: 'get',
-            url: '/guest/order/findOneByDate',
+            url: '/guest/order/findStatesByDate',
             data: {date: date}
         });
     }
 
-    delete(date){
+    findByDateAndState(date, state){
+        return appUtil.request({
+            type: 'get',
+            url: '/guest/order/findOneByDateAndState',
+            data: {date: date, state: state}
+        });
+    }
+
+    back(date){
         return appUtil.request({
             type: 'post',
-            url: '/guest/order/delete',
+            url: '/guest/order/back',
             data: {date: date}
         });
     }
+
 }
 
 export default OrderService;
