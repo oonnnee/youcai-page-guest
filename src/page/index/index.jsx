@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './index.scss';
+import './index.js';
 
 import LoginService from 'service/login-service.jsx';
 import AppUtil from 'util/app-util.jsx';
@@ -14,8 +15,8 @@ class Index extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            login_phone: '',
-            login_pwd: '',
+            login_phone: '18829534051',
+            login_pwd: '123456',
             register_pwd: '',
             register_repwd: '',
             register_name: '',
@@ -264,10 +265,12 @@ class Index extends React.Component{
                                 <form>
                                     <div className="form-group">
                                         <input type="text" className="form-control" id="login_phone" placeholder="手机号"
+                                               value={this.state.login_phone}
                                                onChange={e => this.onChange(e)}/>
                                     </div>
                                     <div className="form-group">
                                         <input type="password" className="form-control" id="login_pwd" placeholder="密码"
+                                               value={this.state.login_pwd}
                                                onChange={e => this.onChange(e)}/>
                                     </div>
                                 </form>
@@ -297,7 +300,8 @@ class Index extends React.Component{
                                             <div className="col-sm-9">
                                                 <input className="form-control" id="register_phone" type="text"
                                                        value={this.state.register_phone}
-                                                       onChange={e => this.onChange(e)}/>
+                                                       onChange={e => this.onChange(e)}
+                                                       data-toggle="tooltip" data-placement="right" title="该手机号已注册"/>
                                             </div>
                                         </div>
                                         <div className="form-group">
