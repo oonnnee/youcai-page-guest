@@ -1,4 +1,4 @@
-    import React from 'react'
+import React from 'react'
 
 // 通用的列表
 class DataGrid extends React.Component{

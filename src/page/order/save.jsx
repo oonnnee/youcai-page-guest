@@ -127,13 +127,11 @@ class Save extends React.Component{
                                         <td>{product.id}</td>
                                         <td>{product.name}</td>
                                         <td>{product.price}</td>
-                                        <td className="row container">
-                                            <div className="col-sm-8">
+                                        <td>
+                                            <div className="input-group">
                                                 <input type="text" className="form-control" name='num'
                                                        value={product.num} onChange={e => this.onInputChange(e)} />
-                                            </div>
-                                            <div className="col-sm-3">
-                                                <span className="badge">{product.unit}</span>
+                                                <div className="input-group-addon">{product.unit}</div>
                                             </div>
                                         </td>
                                         <td>{(product.num*product.price).toFixed(2)}</td>

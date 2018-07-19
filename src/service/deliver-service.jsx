@@ -20,6 +20,14 @@ class DeliverService{
         });
     }
 
+    receive(date){
+        return appUtil.request({
+            type: 'post',
+            url: '/guest/deliver/receive',
+            data: {date: date}
+        });
+    }
+
 }
 
 export default DeliverService;

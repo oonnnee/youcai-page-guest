@@ -47,13 +47,11 @@ class Detail extends React.Component{
             <div id="page-wrapper">
                 <div id="page-inner">
                     <PageTitle title="查看报价" >
-                        <div className="page-header-right">
-                            <Link to="/home/order/new" className="btn btn-primary"
-                               disabled={this.state.guestId===''?true:false}>
-                                <i className="fa fa-plus"></i>&nbsp;
-                                <span>创建采购单</span>
-                            </Link>
-                        </div>
+                        <Link to="/home/order/new" className="btn btn-primary"
+                           disabled={this.state.guestId===''?true:false}>
+                            <i className="fa fa-plus"></i>
+                            <span>创建采购单</span>
+                        </Link>
                     </PageTitle>
                     <BreadCrumb path={[]} current="查看报价"/>
                     <div className="row margin-bottom-md">

@@ -6,11 +6,13 @@ import BreadCrumb from 'page/part/bread-crumb.jsx';
 import DataGrid from 'page/part/data-grid.jsx';
 
 import AppUtil from 'util/app-util.jsx';
+import OrderUtil from 'util/order-util.jsx';
 import OrderService from 'service/order-service.jsx';
 
 
 const orderService = new OrderService();
 const appUtil = new AppUtil();
+const orderUtil  = new OrderUtil();
 
 class Detail extends React.Component{
 
@@ -90,7 +92,7 @@ class Detail extends React.Component{
     onBack(){
         if (!confirm('确认退回此采购单吗？')) return;
         orderService.back(this.state.date).then(() => {
-            appUtil.successTip('退回成功');
+            appUtil.successTip('申请退回成功，请等待后台人员处理');
             window.location.reload(true);
         }, err => {
             appUtil.errorTip(err);
@@ -130,12 +132,7 @@ class Detail extends React.Component{
                         onChange={e => this.onStateChange(e)}>
                     {
                         this.state.states.map((value, index) => {
-                            let show;
-                            if (value === '0'){
-                                show = '正常';
-                            } else{
-                                show = `已退回  ( ${value} )`
-                            }
+                            let show = orderUtil.getShow(value);
                             return <option key={index} value={value}>{show}</option>
                         })
                     }
@@ -146,13 +143,11 @@ class Detail extends React.Component{
             <div id="page-wrapper">
                 <div id="page-inner">
                     <PageTitle title="我的采购单" >
-                        <div className="page-header-right">
-                            <a className="btn btn-danger" disabled={this.state.state!='0'}
-                                onClick={() => this.onBack()}>
-                                <i className="fa fa-chevron-left"></i>&nbsp;
-                                <span>退回</span>
-                            </a>
-                        </div>
+                        <a className="btn btn-danger" disabled={this.state.state != orderUtil.getStateNew().state}
+                            onClick={() => this.onBack()}>
+                            <i className="fa fa-chevron-left"></i>
+                            <span>退回</span>
+                        </a>
                     </PageTitle>
                     <BreadCrumb path={[]} current="我的采购单"/>
                     <div className="row margin-bottom-md">
@@ -178,7 +173,7 @@ class Detail extends React.Component{
                                         <td>{product.name}</td>
                                         <td>{product.price}</td>
                                         <td>
-                                            {product.num}&nbsp;
+                                            {product.num}
                                             <span className="badge">{product.unit}</span>
                                         </td>
                                         <td>{product.amount}</td>

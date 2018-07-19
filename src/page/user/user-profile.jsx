@@ -73,11 +73,11 @@ class UserProfile extends React.Component{
                     <PageTitle title="用户信息" >
                         <div className="page-header-right">
                             <Link to="/home/user/edit" className="btn btn-primary">
-                                <i className="fa fa-edit"></i>&nbsp;
+                                <i className="fa fa-edit"></i>
                                 <span>编辑</span>
                             </Link>
                             <a href="javascript:;" data-toggle="modal" data-target="#exampleModal" className="btn btn-primary">
-                                <i className="fa fa-key"></i>&nbsp;
+                                <i className="fa fa-key"></i>
                                 <span>修改密码</span>
                             </a>
                         </div>

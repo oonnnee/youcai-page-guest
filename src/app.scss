@@ -39,6 +39,10 @@ body {
   margin-right: 40px;
 }
 
+i.fa {
+  margin-right: 10px;
+}
+
 /*-------------------------------
         登录页面
 -------------------------------*/
@@ -334,17 +338,8 @@ p {
   color: #FB5651;
 }
 .badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 4px 7px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  background-color: #24C2CE;
-  border-radius: 10px;
+  margin-left: 10px;
+  background-color: #5BC0DE;
 }
 /*----------------------------------------------
    DASHBOARD STYLES
