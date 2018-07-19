@@ -15,8 +15,8 @@ class Index extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            login_phone: '18829534051',
-            login_pwd: '123456',
+            login_phone: '',
+            login_pwd: '',
             register_pwd: '',
             register_repwd: '',
             register_name: '',
