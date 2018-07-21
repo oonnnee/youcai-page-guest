@@ -30,6 +30,9 @@ class Detail extends React.Component{
     load(){
         pricelistService.findLatest()
             .then(data => {
+                if (!(data instanceof Object)){
+                    return;
+                }
                 this.setState(data);
             }, errMsg => {
                 appUtil.errorTip(errMsg);
