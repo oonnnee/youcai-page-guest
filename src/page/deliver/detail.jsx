@@ -34,7 +34,7 @@ class Detail extends React.Component{
 
     loadDates(){
         deliverService.findDates().then(dates => {
-            if (dates==null || dates.length==0 || !(dates instanceof Array)){
+            if (dates==null || dates.length==0){
                 return;
             }
             this.setState({
