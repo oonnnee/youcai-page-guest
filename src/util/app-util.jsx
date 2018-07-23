@@ -126,6 +126,15 @@ class AppUtil{
         // return 'localhost';
         return '123.206.13.129';
     }
+
+    disable(target, text){
+        target.disabled = true;
+        target.innerHTML = text+"中...";
+    }
+    enable(target, text){
+        target.disabled = false;
+        target.innerHTML = text;
+    }
 }
 
 

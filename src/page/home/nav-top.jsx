@@ -42,9 +42,9 @@ class NavTop extends React.Component{
     }
 
     handleLogout(){
-        loginService.logout().then(data => {
+        loginService.logout().then(() => {
             appUtil.removeStorage('user');
-            appUtil.successTip(data);
+            appUtil.successTip('注销成功');
             window.location.href = "/";
         }, errMsg => {
             appUtil.errorTip(errMsg);

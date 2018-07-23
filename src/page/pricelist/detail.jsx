@@ -38,9 +38,8 @@ class Detail extends React.Component{
 
     render(){
         const tableHeads = [
-            {name: '产品id', width: '15%'},
             {name: '产品名称', width: '30%'},
-            {name: '单价', width: '15%'},
+            {name: '单价（元）', width: '15%'},
             {name: '备注', width: '40%'}
         ];
         return (
@@ -55,12 +54,14 @@ class Detail extends React.Component{
                     </PageTitle>
                     <BreadCrumb path={[]} current="查看报价"/>
                     <div className="row margin-bottom-md">
-                        <div className="col-md-12">
-                            <div className="form-inline">
+                        <div className="col-md-6">
+                            <div className="form-horizontal">
                                 <div className="form-group">
-                                    <label htmlFor="date">最新报价日期&nbsp;</label>
-                                    <input type="text" className="form-control" id="date"
-                                           value={this.state.guestId===''?'暂无报价':this.state.date} readOnly />
+                                    <label htmlFor="date" className="col-sm-4 control-label">最新报价日期</label>
+                                    <div className="col-sm-8">
+                                        <input type="text" className="form-control" id="date"
+                                               value={this.state.guestId===''?'暂无报价':this.state.date} readOnly />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +71,7 @@ class Detail extends React.Component{
                             this.state.products.map((product, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{product.id}</td>
-                                        <td>{product.name}</td>
+                                        <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td>{product.price}</td>
                                         <td>{product.note}</td>
                                     </tr>

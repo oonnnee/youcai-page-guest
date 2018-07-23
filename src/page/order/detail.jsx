@@ -101,7 +101,6 @@ class Detail extends React.Component{
 
     render(){
         const tableHeads = [
-            {name: '产品id', width: '15%'},
             {name: '产品名称', width: '25%'},
             {name: '单价', width: '10%'},
             {name: '数量', width: '15%'},
@@ -151,15 +150,19 @@ class Detail extends React.Component{
                     </PageTitle>
                     <BreadCrumb path={[]} current="我的采购单"/>
                     <div className="row margin-bottom-md">
-                        <div className="col-md-12">
-                            <div className="form-inline">
+                        <div className="col-md-6">
+                            <div className="form-horizontal">
                                 <div className="form-group">
-                                    <label htmlFor="pdate">采购单日期&nbsp;</label>
-                                    {date}
+                                    <label htmlFor="pdate" className="col-sm-4 control-label">采购单日期</label>
+                                    <div className="col-sm-8">{date}</div>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="form-horizontal">
                                 <div className="form-group">
-                                    <label htmlFor="pdate">状态&nbsp;</label>
-                                    {stat}
+                                    <label htmlFor="state" className="col-sm-4 control-label">状态</label>
+                                    <div className="col-sm-8">{stat}</div>
                                 </div>
                             </div>
                         </div>
@@ -169,8 +172,7 @@ class Detail extends React.Component{
                             this.state.products.map((product, index) => {
                                 return (
                                     <tr key={index} aria-rowindex={index}>
-                                        <td>{product.id}</td>
-                                        <td>{product.name}</td>
+                                        <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td>{product.price}</td>
                                         <td>
                                             {product.num}

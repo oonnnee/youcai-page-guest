@@ -94,20 +94,20 @@ class Save extends React.Component{
         }
         products = JSON.stringify(products);
 
-        let target = e.target;
-        target.innerHTML = '创建中...';
-        target.disabled = true;
+        const target = e.target;
+        const text = '创建';
+        appUtil.disable(target, text);
         orderService.new(products).then(() => {
-            target.innerHTML = '创建';
+            appUtil.enable(target, text);
             appUtil.successTip('创建采购单成功');
             window.location.href = '/home/order';
         }, errMsg => {
+            appUtil.enable(target, text);
             appUtil.errorTip(errMsg);
         });
     }
     render(){
         const tableHeads = [
-            {name: '产品id', width: '15%'},
             {name: '产品名称', width: '25%'},
             {name: '单价', width: '10%'},
             {name: '数量', width: '15%'},
@@ -124,8 +124,7 @@ class Save extends React.Component{
                             this.state.products.map((product, index) => {
                                 return (
                                     <tr key={index} aria-rowindex={index}>
-                                        <td>{product.id}</td>
-                                        <td>{product.name}</td>
+                                        <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td>{product.price}</td>
                                         <td>
                                             <div className="input-group">
