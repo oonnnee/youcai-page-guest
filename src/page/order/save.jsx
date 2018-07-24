@@ -40,7 +40,8 @@ class Save extends React.Component{
                     dest.products.push({});
                     dest.products[i].id = products[i].id;
                     dest.products[i].name = products[i].name;
-                    dest.products[i].price = products[i].price;
+                    dest.products[i].marketPrice = products[i].marketPrice;
+                    dest.products[i].guestPrice = products[i].guestPrice;
                     dest.products[i].unit = products[i].unit;
                     dest.products[i].num = 1;
                     dest.products[i].note = '';
@@ -68,7 +69,7 @@ class Save extends React.Component{
     onSave(e) {
         let total = 0;
         this.state.products.map(product => {
-            total += product.price*product.num;
+            total += product.guestPrice*product.num;
         });
         total = total.toFixed(2);
         if (!confirm(`采购单总价为${total}元，确认创建吗？`)){
@@ -87,7 +88,7 @@ class Save extends React.Component{
                 products.push({});
                 const index = products.length - 1;
                 products[index].productId = product.id;
-                products[index].price = product.price;
+                products[index].price = product.guestPrice;
                 products[index].num = product.num;
                 products[index].note = product.note;
             }
@@ -109,10 +110,11 @@ class Save extends React.Component{
     render(){
         const tableHeads = [
             {name: '产品名称', width: '25%'},
-            {name: '单价', width: '10%'},
+            {name: '市场价（元）', width: '10%'},
+            {name: '优惠价（元）', width: '10%'},
             {name: '数量', width: '15%'},
             {name: '金额', width: '10%'},
-            {name: '备注', width: '25%'}
+            {name: '备注', width: '30%'}
         ];
         return (
             <div id="page-wrapper">
@@ -125,7 +127,8 @@ class Save extends React.Component{
                                 return (
                                     <tr key={index} aria-rowindex={index}>
                                         <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
-                                        <td>{product.price}</td>
+                                        <td><del>{product.marketPrice}</del></td>
+                                        <td>{product.guestPrice}</td>
                                         <td>
                                             <div className="input-group">
                                                 <input type="text" className="form-control" name='num'
@@ -133,7 +136,7 @@ class Save extends React.Component{
                                                 <div className="input-group-addon">{product.unit}</div>
                                             </div>
                                         </td>
-                                        <td>{(product.num*product.price).toFixed(2)}</td>
+                                        <td>{(product.num*product.guestPrice).toFixed(2)}</td>
                                         <td>{product.note}</td>
                                     </tr>
                                 );

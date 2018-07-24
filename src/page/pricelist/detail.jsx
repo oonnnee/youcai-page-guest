@@ -39,7 +39,8 @@ class Detail extends React.Component{
     render(){
         const tableHeads = [
             {name: '产品名称', width: '30%'},
-            {name: '单价（元）', width: '15%'},
+            {name: '市场价（元）', width: '15%'},
+            {name: '优惠价（元）', width: '15%'},
             {name: '备注', width: '40%'}
         ];
         return (
@@ -72,7 +73,8 @@ class Detail extends React.Component{
                                 return (
                                     <tr key={index}>
                                         <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
-                                        <td>{product.price}</td>
+                                        <td><del>{product.marketPrice}</del></td>
+                                        <td>{product.guestPrice}</td>
                                         <td>{product.note}</td>
                                     </tr>
                                 );
