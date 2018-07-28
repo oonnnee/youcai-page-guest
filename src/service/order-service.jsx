@@ -4,6 +4,14 @@ const appUtil = new AppUtil();
 
 class OrderService{
 
+    findLatestPricelistWithNum(){
+        return appUtil.request({
+            type: 'get',
+            url: '/guest/order/findLatestPricelistWithNum'
+        });
+    }
+
+
     new(products){
         return appUtil.request({
             type: 'post',

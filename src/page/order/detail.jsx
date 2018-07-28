@@ -101,10 +101,11 @@ class Detail extends React.Component{
 
     render(){
         const tableHeads = [
+            {name: '产品分类', width: '15%'},
             {name: '产品名称', width: '25%'},
             {name: '单价', width: '10%'},
-            {name: '数量', width: '15%'},
-            {name: '金额', width: '10%'},
+            {name: '数量', width: '10%'},
+            {name: '金额', width: '15%'},
             {name: '备注', width: '25%'}
         ];
         let date;
@@ -172,6 +173,7 @@ class Detail extends React.Component{
                             this.state.products.map((product, index) => {
                                 return (
                                     <tr key={index} aria-rowindex={index}>
+                                        <td>{product.category}</td>
                                         <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td>{product.price}</td>
                                         <td>

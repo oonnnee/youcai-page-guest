@@ -37,7 +37,6 @@ class List extends React.Component {
 
     render() {
         const tableHeads = [
-            {name: 'id', width: '15%'},
             {name: '名称', width: '30%'},
             {name: '大类', width: '15%'},
             {name: '单位', width: '14%'},
@@ -55,8 +54,7 @@ class List extends React.Component {
                             this.state.content.map((product, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{product.id}</td>
-                                        <td>{product.name}</td>
+                                        <td><Link to={`/home/product/detail/${product.id}`} >{product.name}</Link></td>
                                         <td>{product.pcodeName}</td>
                                         <td>{product.unit}</td>
                                         <td>{product.price}</td>

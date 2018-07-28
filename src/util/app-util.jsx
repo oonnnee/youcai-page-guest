@@ -1,9 +1,6 @@
 
 class AppUtil{
 
-    /*-------------------------------
-            ajax请求
-    -------------------------------*/
     request(param){
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -32,30 +29,18 @@ class AppUtil{
         });
     }
 
-    /*-------------------------------
-            跳转登录
-    -------------------------------*/
     doLogin(){
         window.location.href = '/login';
     }
 
-    /*-------------------------------
-            错误提示
-    -------------------------------*/
     errorTip(msg){
         alert(msg || '好像哪里不对哦')
     }
 
-    /*-------------------------------
-            成功提示
-    -------------------------------*/
     successTip(msg){
         alert(msg || '成功')
     }
 
-    /*-------------------------------
-            添加本地存储
-    -------------------------------*/
     setStorage(name, data){
         let dataType = typeof data;
         // json对象
@@ -74,9 +59,6 @@ class AppUtil{
         }
     }
 
-    /*-------------------------------
-            取出本地存储
-    -------------------------------*/
     getStorage(name){
         let data = window.sessionStorage.getItem(name);
         if(data){
@@ -87,17 +69,11 @@ class AppUtil{
         }
     }
 
-    /*-------------------------------
-            删除本地存储
-    -------------------------------*/
     removeStorage(name){
         window.sessionStorage.removeItem(name);
     }
 
 
-    /*-------------------------------
-            删除数组中指定元素
-    -------------------------------*/
     removeElementInArray(arr, e){
         let index = -1;
         for (let i = 0; i < arr.length; i++) {
@@ -110,9 +86,6 @@ class AppUtil{
         }
     }
 
-    /*-------------------------------
-            日期转换
-    -------------------------------*/
     getDateString(date){
         const f = {
             format: data => {
@@ -134,6 +107,10 @@ class AppUtil{
     enable(target, text){
         target.disabled = false;
         target.innerHTML = text;
+    }
+
+    getCurrentUser(){
+        return this.getStorage('user');
     }
 }
 

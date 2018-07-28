@@ -171,78 +171,38 @@ class Index extends React.Component{
                     </div>
                 </div>
                 <div className="container">
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/hot/黄心白.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">黄心白</h3>
+                    <div className="row">
+                        <div className="col-md-3">
+                            <div className="thumbnail">
+                                <img src={require('resource/image/index/大白菜.jpg')} />
+                                <div className="caption">
+                                    <h3 className="text-center">黄心白</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/hot/京包菜.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">京包菜</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/hot/菜心.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">菜心</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/hot/瘦肉.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">瘦肉</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                {/*----- latest products -----*/}
-                <div className="col-md-12 margin-top-md">
-                    <div className="panel panel-default">
-                        <div className="panel-body bg-primary">
-                            最新产品
-                        </div>
-                    </div>
-                </div>
-                <div className="container">
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/latest/青菜.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">青菜</h3>
+                        <div className="col-md-3">
+                            <div className="thumbnail">
+                                <img src={require('resource/image/index/大葱.jpg')} />
+                                <div className="caption">
+                                    <h3 className="text-center">京包菜</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/latest/池鱼.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">池鱼</h3>
+                        <div className="col-md-3">
+                            <div className="thumbnail">
+                                <img src={require('resource/image/index/姜.jpg')} />
+                                <div className="caption">
+                                    <h3 className="text-center">菜心</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/latest/秋刀鱼.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">秋刀鱼</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="thumbnail">
-                            <img src={require('resource/image/index/latest/大头鱼.jpg')} />
-                            <div className="caption">
-                                <h3 className="text-center">大头鱼</h3>
+                        <div className="col-md-3">
+                            <div className="thumbnail">
+                                <img src={require('resource/image/index/黄豆芽.jpg')} />
+                                <div className="caption">
+                                    <h3 className="text-center">瘦肉</h3>
+                                </div>
                             </div>
                         </div>
                     </div>

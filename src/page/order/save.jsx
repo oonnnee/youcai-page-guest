@@ -6,10 +6,8 @@ import BreadCrumb from 'page/part/bread-crumb.jsx';
 import DataGrid from 'page/part/data-grid.jsx';
 
 import AppUtil from 'util/app-util.jsx';
-import PricelistService from 'service/pricelist-service.jsx';
 import OrderService from 'service/order-service.jsx';
 
-const pricelistService = new PricelistService();
 const orderService = new OrderService();
 const appUtil = new AppUtil();
 
@@ -19,7 +17,7 @@ class Save extends React.Component{
         super(props);
         this.state = {
             guestId: '',
-            guestName: '',
+            guestName: appUtil.getCurrentUser().name,
             date: {},
             products: [],
         }
@@ -30,26 +28,28 @@ class Save extends React.Component{
     }
 
     load(){
-        pricelistService.findLatest()
+        orderService.findLatestPricelistWithNum()
             .then(data => {
-                let dest = {};
+                // let dest = {};
+                //
+                // dest.products = [];
+                // let products = data.products;
+                // for (let i=0; i<products.length; i++){
+                //     dest.products.push({});
+                //     dest.products[i].id = products[i].id;
+                //     dest.products[i].name = products[i].name;
+                //     dest.products[i].marketPrice = products[i].marketPrice;
+                //     dest.products[i].guestPrice = products[i].guestPrice;
+                //     dest.products[i].unit = products[i].unit;
+                //     dest.products[i].num = 1;
+                //     dest.products[i].note = '';
+                // }
+                //
+                // dest.guestId = data.guestId;
+                // dest.date = data.date;
+                // this.setState(dest)
 
-                dest.products = [];
-                let products = data.products;
-                for (let i=0; i<products.length; i++){
-                    dest.products.push({});
-                    dest.products[i].id = products[i].id;
-                    dest.products[i].name = products[i].name;
-                    dest.products[i].marketPrice = products[i].marketPrice;
-                    dest.products[i].guestPrice = products[i].guestPrice;
-                    dest.products[i].unit = products[i].unit;
-                    dest.products[i].num = 1;
-                    dest.products[i].note = '';
-                }
-
-                dest.guestId = data.guestId;
-                dest.date = data.date;
-                this.setState(dest)
+                this.setState(data);
             }, errMsg => {
                 appUtil.errorTip(errMsg);
             })
@@ -109,12 +109,13 @@ class Save extends React.Component{
     }
     render(){
         const tableHeads = [
+            {name: '产品分类', width: '10%'},
             {name: '产品名称', width: '25%'},
             {name: '市场价（元）', width: '10%'},
             {name: '优惠价（元）', width: '10%'},
             {name: '数量', width: '15%'},
             {name: '金额', width: '10%'},
-            {name: '备注', width: '30%'}
+            {name: '备注', width: '20%'}
         ];
         return (
             <div id="page-wrapper">
@@ -126,12 +127,13 @@ class Save extends React.Component{
                             this.state.products.map((product, index) => {
                                 return (
                                     <tr key={index} aria-rowindex={index}>
+                                        <td>{product.category}</td>
                                         <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td><del>{product.marketPrice}</del></td>
                                         <td>{product.guestPrice}</td>
                                         <td>
                                             <div className="input-group">
-                                                <input type="text" className="form-control" name='num'
+                                                <input type="number" className="form-control" name='num'
                                                        value={product.num} onChange={e => this.onInputChange(e)} />
                                                 <div className="input-group-addon">{product.unit}</div>
                                             </div>
