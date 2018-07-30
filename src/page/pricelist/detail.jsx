@@ -17,9 +17,9 @@ class Detail extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            'guestId': '',
-            'date': {},
-            'products': []
+            guestId: '',
+            date: {},
+            products: []
         }
     }
 
@@ -30,7 +30,13 @@ class Detail extends React.Component{
     load(){
         pricelistService.findLatest()
             .then(data => {
-                this.setState(data);
+                if (data == undefined){
+                    this.setState({
+                        products: []
+                    });
+                } else{
+                    this.setState(data);
+                }
             }, errMsg => {
                 appUtil.errorTip(errMsg);
             })
