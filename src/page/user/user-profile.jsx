@@ -68,29 +68,26 @@ class UserProfile extends React.Component{
 
     render(){
         return (
-            <div id="page-wrapper">
-                <div id="page-inner">
+            <div className="container">
                     <PageTitle title="用户信息" >
-                        <div className="page-header-right">
-                            <Link to="/home/user/edit" className="btn btn-primary">
-                                <i className="fa fa-edit"></i>
-                                <span>编辑</span>
-                            </Link>
-                            <a href="javascript:;" data-toggle="modal" data-target="#exampleModal" className="btn btn-primary">
-                                <i className="fa fa-key"></i>
-                                <span>修改密码</span>
-                            </a>
-                        </div>
+                        <Link to="/user/edit" className="btn btn-primary">
+                            <i className="fa fa-edit"></i>
+                            <span>编辑</span>
+                        </Link>
+                        <a href="javascript:;" data-toggle="modal" data-target="#exampleModal" className="btn btn-primary">
+                            <i className="fa fa-key"></i>
+                            <span>修改密码</span>
+                        </a>
                     </PageTitle>
                     <BreadCrumb path={[]} current="用户信息"/>
                     <div className="row">
                         <div className="col-md-12 column">
                             <form className="form-horizontal" role="form">
                                 <div className="form-group">
-                                    <label htmlFor="id" className="col-sm-2 control-label">id</label>
+                                    <label htmlFor="phone" className="col-sm-2 control-label">手机号</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" id="id" type="text"
-                                               value={this.state.id} readOnly />
+                                        <input className="form-control" id="phone" type="text"
+                                               value={this.state.phone} readOnly />
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -105,13 +102,6 @@ class UserProfile extends React.Component{
                                     <div className="col-sm-10">
                                         <input className="form-control" id="addr" type="text"
                                                value={this.state.addr} readOnly />
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="phone" className="col-sm-2 control-label">联系电话</label>
-                                    <div className="col-sm-10">
-                                        <input className="form-control" id="phone" type="text"
-                                               value={this.state.phone} readOnly />
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -184,7 +174,6 @@ class UserProfile extends React.Component{
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         )
     }

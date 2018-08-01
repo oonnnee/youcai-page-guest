@@ -85,9 +85,9 @@ class Detail extends React.Component{
         const tableHeads = [
             {name: '产品分类', width: '15%'},
             {name: '产品名称', width: '25%'},
-            {name: '单价', width: '10%'},
+            {name: '单价(元)', width: '10%'},
             {name: '数量', width: '10%'},
-            {name: '金额', width: '15%'},
+            {name: '金额(元)', width: '15%'},
             {name: '备注', width: '20%'}
         ];
 
@@ -121,8 +121,7 @@ class Detail extends React.Component{
             pageTitle = <PageTitle title="我的送货单"/>
         }
         return (
-            <div id="page-wrapper">
-                <div id="page-inner">
+            <div className="container">
                     {pageTitle}
                     <BreadCrumb path={[]} current="我的送货单"/>
                     <div className="row margin-bottom-md">
@@ -168,7 +167,7 @@ class Detail extends React.Component{
                                 return (
                                     <tr key={index}>
                                         <td>{product.category}</td>
-                                        <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
+                                        <td><Link to={`/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td>{product.price}</td>
                                         <td>{product.num}<span className="badge">{product.unit}</span></td>
                                         <td>{product.amount}</td>
@@ -178,7 +177,6 @@ class Detail extends React.Component{
                             })
                         }
                     </DataGrid>
-                </div>
             </div>
         );
     }

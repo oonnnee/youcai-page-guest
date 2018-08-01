@@ -106,9 +106,9 @@ class Detail extends React.Component{
         const tableHeads = [
             {name: '产品分类', width: '15%'},
             {name: '产品名称', width: '25%'},
-            {name: '单价', width: '10%'},
+            {name: '单价(元)', width: '10%'},
             {name: '数量', width: '10%'},
-            {name: '金额', width: '15%'},
+            {name: '金额(元)', width: '15%'},
             {name: '备注', width: '25%'}
         ];
         let date;
@@ -143,8 +143,7 @@ class Detail extends React.Component{
             );
         }
         return (
-            <div id="page-wrapper">
-                <div id="page-inner">
+            <div className="container">
                     <PageTitle title="我的采购单" >
                         <a className="btn btn-danger" disabled={this.state.state != orderUtil.getStateNew().state}
                             onClick={() => this.onBack()}>
@@ -177,7 +176,7 @@ class Detail extends React.Component{
                                 return (
                                     <tr key={index} aria-rowindex={index}>
                                         <td>{product.category}</td>
-                                        <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
+                                        <td><Link to={`/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td>{product.price}</td>
                                         <td>
                                             {product.num}
@@ -190,7 +189,6 @@ class Detail extends React.Component{
                             })
                         }
                     </DataGrid>
-                </div>
             </div>
         );
     }

@@ -13,7 +13,6 @@ class DataGrid extends React.Component{
         this.setState({
             isFirstLoading : false
         });
-        console.log("========")
     }
     render(){
         // 表头信息

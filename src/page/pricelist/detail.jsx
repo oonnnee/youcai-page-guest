@@ -51,10 +51,9 @@ class Detail extends React.Component{
             {name: '备注', width: '25%'}
         ];
         return (
-            <div id="page-wrapper">
-                <div id="page-inner">
+            <div className="container">
                     <PageTitle title="查看报价" >
-                        <Link to="/home/order/new" className="btn btn-primary"
+                        <Link to="/order/new" className="btn btn-primary"
                            disabled={this.state.guestId===''?true:false}>
                             <i className="fa fa-plus"></i>
                             <span>创建采购单</span>
@@ -80,16 +79,21 @@ class Detail extends React.Component{
                                 return (
                                     <tr key={index}>
                                         <td>{product.category}</td>
-                                        <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
+                                        <td><Link to={`/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td><del>{product.marketPrice}</del></td>
-                                        <td>{product.guestPrice}</td>
+                                        <td>{product.guestPrice} 元/{product.unit}</td>
                                         <td>{product.note}</td>
                                     </tr>
                                 );
                             })
                         }
                     </DataGrid>
-                </div>
+                    <div className="col-md-12">
+                        <Link to="/order/new" disabled={this.state.guestId===''?true:false}
+                              className="btn btn-primary btn-lg btn-block">
+                            创建采购单
+                        </Link>
+                    </div>
             </div>
         );
     }

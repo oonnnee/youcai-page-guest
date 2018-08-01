@@ -72,6 +72,10 @@ class Save extends React.Component{
             total += product.guestPrice*product.num;
         });
         total = total.toFixed(2);
+        if (total == 0){
+            appUtil.errorTip('还没有任何采购哦！');
+            return;
+        }
         if (!confirm(`采购单总价为${total}元，确认创建吗？`)){
             return;
         }
@@ -100,8 +104,8 @@ class Save extends React.Component{
         appUtil.disable(target, text);
         orderService.new(products).then(() => {
             appUtil.enable(target, text);
-            appUtil.successTip('创建采购单成功');
-            window.location.href = '/home/order';
+            appUtil.successTip('创建采购单成功，工作人员将马上为您送货');
+            window.location.href = '/order';
         }, errMsg => {
             appUtil.enable(target, text);
             appUtil.errorTip(errMsg);
@@ -114,21 +118,20 @@ class Save extends React.Component{
             {name: '市场价（元）', width: '10%'},
             {name: '优惠价（元）', width: '10%'},
             {name: '数量', width: '15%'},
-            {name: '金额', width: '10%'},
+            {name: '金额(元)', width: '10%'},
             {name: '备注', width: '20%'}
         ];
         return (
-            <div id="page-wrapper">
-                <div id="page-inner">
+            <div className="container">
                     <PageTitle title="创建采购单" />
-                    <BreadCrumb path={[{href: '/home/pricelist', name: '查看报价'}]} current="创建采购单"/>
+                    <BreadCrumb path={[{href: '/pricelist', name: '查看报价'}]} current="创建采购单"/>
                     <DataGrid tableHeads={tableHeads}>
                         {
                             this.state.products.map((product, index) => {
                                 return (
                                     <tr key={index} aria-rowindex={index}>
                                         <td>{product.category}</td>
-                                        <td><Link to={`/home/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
+                                        <td><Link to={`/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td><del>{product.marketPrice}</del></td>
                                         <td>{product.guestPrice}</td>
                                         <td>
@@ -148,7 +151,6 @@ class Save extends React.Component{
                     <div className="col-md-12">
                         <button className="btn btn-primary btn-lg btn-block" onClick={(e) => this.onSave(e)}>创建</button>
                     </div>
-                </div>
             </div>
         );
     }

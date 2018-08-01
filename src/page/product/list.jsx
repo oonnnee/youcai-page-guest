@@ -44,8 +44,7 @@ class List extends React.Component {
             {name: '操作', width: '16%'},
         ];
         return (
-            <div id="page-wrapper">
-                <div id="page-inner">
+            <div className="container">
                     <PageTitle title="产品列表"/>
                     <BreadCrumb path={[]} current="产品列表"/>
                     <Search onSearch={(PCodes, name) => {this.onSearch(PCodes, name)}}/>
@@ -54,12 +53,12 @@ class List extends React.Component {
                             this.state.content.map((product, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td><Link to={`/home/product/detail/${product.id}`} >{product.name}</Link></td>
+                                        <td><Link to={`/product/detail/${product.id}`} >{product.name}</Link></td>
                                         <td>{product.pcodeName}</td>
                                         <td>{product.unit}</td>
                                         <td>{product.price}</td>
                                         <td>
-                                            <Link className="opear" to={`/home/product/detail/${product.id}`}>详情</Link>
+                                            <Link className="opear" to={`/product/detail/${product.id}`}>详情</Link>
                                         </td>
                                     </tr>
                                 );
@@ -70,7 +69,6 @@ class List extends React.Component {
                                 total={this.state.totalElements}
                                 onChange={(current, pageSize) => this.onChange(current, pageSize)}
                                 onShowSizeChange={(current, pageSize) => this.onChange(current, pageSize)}/>
-                </div>
             </div>
         );
     }

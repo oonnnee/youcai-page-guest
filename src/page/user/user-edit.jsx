@@ -16,7 +16,6 @@ class UserEdit extends React.Component{
             id: '',
             name: '',
             addr: '',
-            phone: '',
             mobile1: '',
             leader1: '',
             mobile2: '',
@@ -45,7 +44,7 @@ class UserEdit extends React.Component{
         userService.update(this.state).then(() =>  {
             appUtil.setStorage('user', this.state);
             appUtil.successTip('更新用户信息成功');
-            window.location.href = '/home/user';
+            window.location.href = '/user';
         }, errMsg => {
             appUtil.errorTip(errMsg);
         });
@@ -53,10 +52,9 @@ class UserEdit extends React.Component{
 
     render(){
         return (
-            <div id="page-wrapper">
-                <div id="page-inner">
+            <div className="container">
                     <PageTitle title="更新用户信息" />
-                    <BreadCrumb path={[{href: '/home/user', name: '用户信息'}]} current="更新用户信息"/>
+                    <BreadCrumb path={[{href: '/user', name: '用户信息'}]} current="更新用户信息"/>
                     <div className="row">
                         <div className="col-md-12 column">
                             <div className="form-horizontal" role="form">
@@ -72,13 +70,6 @@ class UserEdit extends React.Component{
                                     <div className="col-sm-10">
                                         <input className="form-control" id="addr" type="text"
                                                value={this.state.addr} onChange={e => this.onInputChange(e)} />
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="phone" className="col-sm-2 control-label">联系电话</label>
-                                    <div className="col-sm-10">
-                                        <input className="form-control" id="phone" type="text"
-                                               value={this.state.phone} onChange={e => this.onInputChange(e)} />
                                     </div>
                                 </div>
                                 <div className="form-group">
@@ -126,7 +117,6 @@ class UserEdit extends React.Component{
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         )
     }

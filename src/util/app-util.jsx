@@ -30,7 +30,7 @@ class AppUtil{
     }
 
     doLogin(){
-        window.location.href = '/login';
+        $('#loginModal').modal('show');
     }
 
     errorTip(msg){
