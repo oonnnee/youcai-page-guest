@@ -43,13 +43,6 @@ class Detail extends React.Component{
                     <div className="col-md-12 column">
                         <form className="form-horizontal" role="form">
                             <div className="form-group">
-                                <label htmlFor="id" className="col-sm-2 control-label">id</label>
-                                <div className="col-sm-10">
-                                    <input className="form-control" id="id" type="text"
-                                           value={this.state.id} readOnly />
-                                </div>
-                            </div>
-                            <div className="form-group">
                                 <label htmlFor="name" className="col-sm-2 control-label">名称</label>
                                 <div className="col-sm-10">
                                     <input className="form-control" id="name" type="text"
