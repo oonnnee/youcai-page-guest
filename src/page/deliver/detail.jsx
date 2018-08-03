@@ -20,7 +20,8 @@ class Detail extends React.Component{
         super(props);
         this.state = {
             guestId: '',
-            date: '',
+            deliverDate: '',
+            orderDate: '',
             dates: [],
             driver: {},
             state: '',
@@ -96,7 +97,7 @@ class Detail extends React.Component{
             date = <input type="text" className="form-control" value="暂无送货单" readOnly />
         }else{
             date = (
-                <select id="date" value={this.state.date} className="form-control"
+                <select id="date" value={this.state.orderDate} className="form-control"
                         onChange={e => this.onDateChange(e)}>
                     {
                         this.state.dates.map((value, index) => {
@@ -128,11 +129,19 @@ class Detail extends React.Component{
                         <div className="col-md-6">
                             <div className="form-horizontal">
                                 <div className="form-group">
-                                    <label htmlFor="date" className="col-sm-4 control-label">送货日期</label>
+                                    <label htmlFor="orderDate" className="col-sm-4 control-label">采购日期</label>
                                     <div className="col-sm-8">
                                         {date}
                                     </div>
                                 </div>
+                                <div className="form-group">
+                                    <label htmlFor="deliverDate" className="col-sm-4 control-label">送货日期</label>
+                                    <div className="col-sm-8">
+                                        <input className="form-control" id="orderDate" type="text"
+                                               value={this.state.deliverDate} readOnly />
+                                    </div>
+                                </div>
+
                                 <div className="form-group">
                                     <label htmlFor="state" className="col-sm-4 control-label">状态</label>
                                     <div className="col-sm-8">
