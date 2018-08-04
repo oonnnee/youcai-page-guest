@@ -8,7 +8,8 @@ module.exports = {
     entry: './src/app.jsx',
     output:{
         path: path.resolve(__dirname, 'dist'),
-        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//localhost:8069/youcai-page-guest/dist/',
+        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//123.206.13.129:8069/youcai-page-guest/dist/',
+        // publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//localhost:8069/youcai-page-guest/dist/',
         filename: 'app.js'
     },
     resolve: {
