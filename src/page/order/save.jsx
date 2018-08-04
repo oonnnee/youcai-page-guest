@@ -30,25 +30,6 @@ class Save extends React.Component{
     load(){
         orderService.findLatestPricelistWithNum()
             .then(data => {
-                // let dest = {};
-                //
-                // dest.products = [];
-                // let products = data.products;
-                // for (let i=0; i<products.length; i++){
-                //     dest.products.push({});
-                //     dest.products[i].id = products[i].id;
-                //     dest.products[i].name = products[i].name;
-                //     dest.products[i].marketPrice = products[i].marketPrice;
-                //     dest.products[i].guestPrice = products[i].guestPrice;
-                //     dest.products[i].unit = products[i].unit;
-                //     dest.products[i].num = 1;
-                //     dest.products[i].note = '';
-                // }
-                //
-                // dest.guestId = data.guestId;
-                // dest.date = data.date;
-                // this.setState(dest)
-
                 this.setState(data);
             }, errMsg => {
                 appUtil.errorTip(errMsg);
@@ -57,8 +38,13 @@ class Save extends React.Component{
 
 
     onInputChange(e){
-        const index = e.target.parentElement.parentElement.parentElement.getAttribute('aria-rowindex');
         const name = e.target.getAttribute('name');
+        let index;
+        if (e.target.name == 'num'){
+            index = e.target.parentElement.parentElement.parentElement.getAttribute('aria-rowindex');
+        } else {
+            index = e.target.parentElement.parentElement.getAttribute('aria-rowindex');
+        }
         let products = this.state.products;
         products[index][name] = e.target.value;
         this.setState({
@@ -76,9 +62,6 @@ class Save extends React.Component{
             appUtil.errorTip('还没有任何采购哦！');
             return;
         }
-        if (!confirm(`采购单总价为${total}元，确认创建吗？`)){
-            return;
-        }
 
         let products = [];
         for (let i=0; i<this.state.products.length; i++){
@@ -88,15 +71,23 @@ class Save extends React.Component{
                 appUtil.errorTip(`第${i+1}行产品名称为'${product.name}'的采购数量非数字`);
                 return;
             }
-            if (num != 0){
-                products.push({});
-                const index = products.length - 1;
-                products[index].productId = product.id;
-                products[index].price = product.guestPrice;
-                products[index].num = product.num;
-                products[index].note = product.note;
+            if (num < 0){
+                appUtil.errorTip(`第${i+1}行产品名称为'${product.name}'的采购数量小于0`);
+                return;
             }
+
+            products.push({});
+            const index = products.length - 1;
+            products[index].productId = product.id;
+            products[index].price = product.guestPrice;
+            products[index].num = product.num;
+            products[index].note = product.note;
         }
+
+        if (!confirm(`采购单总价为${total}元，确认创建吗？`)){
+            return;
+        }
+
         products = JSON.stringify(products);
 
         const target = e.target;
@@ -111,8 +102,10 @@ class Save extends React.Component{
             appUtil.errorTip(errMsg);
         });
     }
+
     render(){
         const tableHeads = [
+            {name: '编号', width: '5%'},
             {name: '产品分类', width: '10%'},
             {name: '产品名称', width: '25%'},
             {name: '市场价（元）', width: '10%'},
@@ -130,6 +123,7 @@ class Save extends React.Component{
                             this.state.products.map((product, index) => {
                                 return (
                                     <tr key={index} aria-rowindex={index}>
+                                        <td>{index+1}</td>
                                         <td>{product.category}</td>
                                         <td><Link to={`/product/detail/${product.id}`} target="_blank">{product.name}</Link></td>
                                         <td><del>{product.marketPrice}</del></td>
@@ -142,7 +136,8 @@ class Save extends React.Component{
                                             </div>
                                         </td>
                                         <td>{(product.num*product.guestPrice).toFixed(2)}</td>
-                                        <td>{product.note}</td>
+                                        <td><input type="text" className="form-control" name='note'
+                                                   value={product.note} onChange={e => this.onInputChange(e)} /></td>
                                     </tr>
                                 );
                             })
