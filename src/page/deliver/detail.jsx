@@ -25,6 +25,7 @@ class Detail extends React.Component{
             dates: [],
             driver: {},
             state: '',
+            total: 0,
             products: [],
         }
     }
@@ -166,6 +167,13 @@ class Detail extends React.Component{
                                     <div className="col-sm-8">
                                         <input type="text" className="form-control" id="driverMobile"
                                                value={this.state.driver.mobile} readOnly />
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="total" className="col-sm-4 control-label">总计</label>
+                                    <div className="col-sm-8">
+                                        <input type="text" className="form-control" id="total"
+                                               value={this.state.total+' 元'} readOnly />
                                     </div>
                                 </div>
                             </div>

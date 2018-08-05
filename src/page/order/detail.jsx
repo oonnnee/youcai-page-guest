@@ -25,6 +25,7 @@ class Detail extends React.Component{
             dates: [],
             states: [],
             products: [],
+            total: 0
         }
     }
 
@@ -159,6 +160,13 @@ class Detail extends React.Component{
                                 <div className="form-group">
                                     <label htmlFor="pdate" className="col-sm-4 control-label">采购单日期</label>
                                     <div className="col-sm-8">{date}</div>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="total" className="col-sm-4 control-label">总计</label>
+                                    <div className="col-sm-8">
+                                        <input type="text" className="form-control" id="total"
+                                               value={this.state.total+' 元'} readOnly />
+                                    </div>
                                 </div>
                             </div>
                         </div>
