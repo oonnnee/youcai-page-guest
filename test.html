@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/customer-info/submit",
+        data: {
+            phone: '18829534051',
+            height:172.5,
+            neckKnee:172.5,
+            shoulderSleeve:172.5,
+            chest:172.5,
+            waist:172.5,
+            ass:172.5,
+            sleeveFat:172.7},
+        success: function(msg){
+            alert( "Data Saved: " + msg );
+        }
+    });
+</script>
+
+</body>
+</html>
